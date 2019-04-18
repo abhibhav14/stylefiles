@@ -1,0 +1,164 @@
+%% core.sty
+%% Abhibhav Garg
+%% 
+%% Draws upon style elements from 
+%% the style file for the course CS777 by Purushottam Kar
+%% the style file for the course CS773 by Purushottam Kar
+%% the style file for the course CS289 by Alexander Sherstov
+%% the class file for the publication NOW FnT(R)-ML by Neal Parikh
+%% the style file for the proceedings of the NIPS 2015 conference
+
+%% this file contains macros, etc
+
+%% the section for subsubsubsections is from https://tex.stackexchange.com/questions/60209/how-to-add-an-extra-level-of-sections-with-headings-below-subsubsection
+%% i am not sure how to get environments working with beamer yet, and thus the style file is split.
+
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{mathtools}
+\usepackage{stmaryrd}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xspace}
+\usepackage[round,authoryear]{natbib}
+\usepackage{framed}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+
+
+ %Changes paragraph to behave like subsubsubsection
+%\setcounter{secnumdepth}{4}
+%\titleformat{\paragraph}
+%{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+%\titlespacing*{\paragraph}
+%{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+
+%\newtheorem{theorem}{Theorem}[section]
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{corollary}[theorem]{Corollary}
+%\newtheorem{claim}[theorem]{Claim}
+%\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{remark}{Remark}
+
+\def\LatinUpper{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
+\def\LatinLower{a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z}
+
+% Caligraphic fonts
+\newcommand{\genCal}[1]{\expandafter\newcommand\csname c#1\endcsname{{\mathcal #1}}}
+\@for\i:=\LatinUpper\do{%
+	\expandafter\genCal\i
+}
+
+% Blackboard fonts
+\newcommand{\genBb}[1]{\expandafter\newcommand\csname b#1\endcsname{{\mathbb #1}}}
+\@for\i:=\LatinUpper\do{%
+	\expandafter\genBb\i
+}
+
+% Fraktur fonts
+\newcommand{\genFk}[1]{\expandafter\newcommand\csname k#1\endcsname{{\mathfrak #1}}}
+\@for\i:=\LatinUpper\do{%
+	\expandafter\genFk\i
+}
+
+\newcommand{\genFkl}[1]{\expandafter\newcommand\csname k#1\endcsname{{\mathfrak #1}}}
+\@for\i:=\LatinLower\do{%
+	\expandafter\genFkl\i
+}
+
+% Vectors
+\renewcommand{\vec}[1]{{\mathbf{#1}}}
+\newcommand{\genLatinVec}[1]{\expandafter\newcommand\csname v#1\endcsname{{\vec #1}}}
+\@for\i:=\LatinLower\do{%
+	\expandafter\genLatinVec\i
+}
+
+\newcommand{\genLatinVecU}[1]{\expandafter\newcommand\csname v#1\endcsname{{\vec #1}}}
+\@for\i:=\LatinUpper\do{%
+	\expandafter\genLatinVecU\i
+}
+
+% Greek symbol vectors
+\def\mydefgreek#1{\expandafter\def\csname v#1\endcsname{\text{\boldmath$\mathbf{\csname #1\endcsname}$}}}
+\def\mydefallgreek#1{\ifx\mydefallgreek#1\else\mydefgreek{#1}%
+   \lowercase{\mydefgreek{#1}}\expandafter\mydefallgreek\fi}
+\mydefallgreek {alpha}{beta}{gamma}{delta}{epsilon}{varepsilon}{zeta}{eta}{theta}{vartheta}{iota}{kappa}{lambda}{mu}{nu}{xi}{omicron}{pi}{rho}{varrho}{sigma}{tau}{upsilon}{phi}{varphi}{chi}{psi}{omega}\mydefallgreek
+
+% Upper Greek symbol vectors
+\def\mydefugreek#1{\expandafter\def\csname v#1\endcsname{\text{\boldmath$\mathbf{\csname #1\endcsname}$}}}
+\def\mydefallugreek#1{\ifx\mydefallugreek#1\else\mydefugreek{#1}%
+   \lowercase{\mydefugreek{#1}}\expandafter\mydefallugreek\fi}
+\mydefallugreek{Gamma}{Delta}{Theta}{Lambda}{Xi}{Sigma}{Upsilon}{Phi}{Psi}{Omega}\mydefallugreek
+
+% Vector numerals
+\newcommand{\vzero}{\vec{0}}
+\newcommand{\vone}{\vec{1}}
+
+%Math Operators
+\DeclareMathOperator{\Fun}{Fun}
+\DeclareMathOperator{\Exp}{exp}
+\DeclareMathOperator{\Image}{im}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\Vnp}{VNP}
+\DeclareMathOperator{\Vpclass}{VP}
+\DeclareMathOperator{\Vfclass}{VF}
+\DeclareMathOperator{\Poly}{poly}
+\DeclareMathOperator{\Bin}{Bin}
+\DeclareMathOperator{\Po}{Po}
+\DeclareMathOperator{\Coeff}{coeff}
+
+% Parentheses
+\newcommand{\bc}[1]{\left\{{#1}\right\}}
+\newcommand{\br}[1]{\left({#1}\right)}
+\newcommand{\bs}[1]{\left[{#1}\right]}
+\newcommand{\abs}[1]{\left| {#1} \right|}
+\newcommand{\norm}[1]{\left\| {#1} \right\|}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\bsd}[1]{\left\llbracket{#1}\right\rrbracket}
+\newcommand{\ip}[2]{\left\langle{#1},{#2}\right\rangle}
+\newcommand{\setbuild}[2]{\bc{{#1} \,\lvert\, {#2}}}
+
+% Other Macros
+\newcommand{\Z}[1]{\bZ / {#1} \bZ}
+\newcommand{\fun}[2]{\Fun\br{{#1}, {#2}}}
+\newcommand{\diff}{\mathop{}\! \mathrm{d}}
+\newcommand{\nexp}[1]{\Exp\br{{#1}}}
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\lspan}[1]{\Span\br{{#1}}}
+\newcommand{\poly}[1]{\Poly\br{{#1}}}
+
+
+% Asymptotic notation
+\newcommand{\bigO}[1]{{\cal O}\br{{#1}}}
+\newcommand{\softO}[1]{\widetilde{\cal O}\br{{#1}}}
+\newcommand{\Om}[1]{\Omega\br{{#1}}}
+\newcommand{\softOm}[1]{\tilde\Omega\br{{#1}}}
+
+% Statistics notation
+% Probabilities
+\renewcommand{\P}[2][]{\underset{#1}\bP\bs{{#2}}}
+% Expectations
+\newcommand{\E}[2][]{\underset{#1}\bE\bs{{#2}}}
+% Variance
+\newcommand{\Var}[2][]{\underset{#1}{\text{Var}}\bs{{#2}}}
+
+% Miscellaneous
+\newcommand{\argmin}{\mathop{\arg\min}}
+\newcommand{\argmax}{\mathop{\arg\max}}
+\newcommand{\ind}[1]{\bI\bc{{#1}}}
+\newcommand{\etal}{\emph{et al}\xspace}
+\newcommand{\nth}{\text{$^{\text{th}}$}\xspace}
+\newcommand{\nnd}{\text{$^{\text{nd}}$}\xspace}
+\newcommand{\nrd}{\text{$^{\text{rd}}$}\xspace}
+\newcommand{\nst}{\text{$^{\text{st}}$}\xspace}
+\newcommand{\supp}{\text{supp}}
+\newcommand{\rank}{\text{rank}}
+\newcommand{\trace}{\text{trace}}
+\newcommand{\diag}{\text{diag}}
+\newcommand{\cond}{\,|\,}
+
+\floatstyle{plain}

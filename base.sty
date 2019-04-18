@@ -1,0 +1,41 @@
+%% base.sty
+%% Abhibhav Garg
+%% 
+%% Draws upon style elements from 
+%% the style file for the course CS777 by Purushottam Kar
+%% the style file for the course CS773 by Purushottam Kar
+%% the style file for the course CS289 by Alexander Sherstov
+%% the class file for the publication NOW FnT(R)-ML by Neal Parikh
+%% the style file for the proceedings of the NIPS 2015 conference
+
+%% this file redefines some environments
+
+%% the section for subsubsubsections is from https://tex.stackexchange.com/questions/60209/how-to-add-an-extra-level-of-sections-with-headings-below-subsubsection
+%% i am not sure how to get environments working with beamer yet, and thus the style file is split.
+
+\usepackage{fullpage}
+\usepackage{titlesec}
+\usepackage{core}
+\usepackage[nottoc,numbib]{tocbibind}
+
+\textheight 8.5in
+\topmargin -0.2in
+\oddsidemargin 0.20in
+\textwidth 6.3in
+
+% Changes paragraph to behave like subsubsubsection
+\setcounter{secnumdepth}{4}
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}{Remark}
