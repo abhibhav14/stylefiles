@@ -13,15 +13,31 @@
 %% the section for subsubsubsections is from https://tex.stackexchange.com/questions/60209/how-to-add-an-extra-level-of-sections-with-headings-below-subsubsection
 %% i am not sure how to get environments working with beamer yet, and thus the style file is split.
 
-\usepackage{fullpage}
+%\usepackage{fullpage}
+\usepackage{geometry}
+\usepackage{marginnote}
 \usepackage{titlesec}
 \usepackage{core}
 \usepackage[nottoc,numbib]{tocbibind}
 
-\textheight 8.5in
-\topmargin -0.2in
-\oddsidemargin 0.20in
-\textwidth 6.3in
+%\ifdefined\NOMARGIN
+%\else
+%\textheight 8.5in
+%\topmargin -0.2in
+%\oddsidemargin 0.20in
+%\textwidth 6.3in
+%\fi
+
+\ifdefined\DRAFT
+  \overfullrule=2cm
+\fi
+
+\ifdefined\DEFAULTFONT
+\else
+  \usepackage{palatino}
+  \usepackage{eulervm}
+\fi
+
 
 % Changes paragraph to behave like subsubsubsection
 \setcounter{secnumdepth}{4}
@@ -36,6 +52,13 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{claim}[theorem]{Claim}
-\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
 \newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\theoremstyle{remark}
 \newtheorem{remark}{Remark}
+
+\theoremstyle{plain} % in case I want to define a new style within the .tex file, this should be the default

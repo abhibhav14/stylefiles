@@ -10,38 +10,29 @@
 
 %% this file contains macros, etc
 
-%% the section for subsubsubsections is from https://tex.stackexchange.com/questions/60209/how-to-add-an-extra-level-of-sections-with-headings-below-subsubsection
 %% i am not sure how to get environments working with beamer yet, and thus the style file is split.
 
 \usepackage{amsmath,amsthm,amssymb}
 \usepackage{mathtools}
+\usepackage{mathrsfs}
 \usepackage{stmaryrd}
 \usepackage{algorithmic}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{xspace}
-\usepackage[round,authoryear]{natbib}
+\usepackage[square,authoryear,longnamesfirst]{natbib}
 \usepackage{framed}
 \usepackage{float}
 \usepackage{tikz}
 \usepackage{tikz-cd}
+\usepackage{todonotes}
+\usepackage{enumitem}
 
 
- %Changes paragraph to behave like subsubsubsection
-%\setcounter{secnumdepth}{4}
-%\titleformat{\paragraph}
-%{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
-%\titlespacing*{\paragraph}
-%{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
-
-
-%\newtheorem{theorem}{Theorem}[section]
-%\newtheorem{lemma}[theorem]{Lemma}
-%\newtheorem{corollary}[theorem]{Corollary}
-%\newtheorem{claim}[theorem]{Claim}
-%\newtheorem{definition}[theorem]{Definition}
-%\newtheorem{proposition}[theorem]{Proposition}
-%\newtheorem{remark}{Remark}
+% things to do
+% use \middle like \left and \right in the setbuilder notation, and wherever else required
+% add comments to find operators
+% change non operators to text, like complexity classes
 
 \def\LatinUpper{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
 \def\LatinLower{a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z}
@@ -67,6 +58,12 @@
 \newcommand{\genFkl}[1]{\expandafter\newcommand\csname k#1\endcsname{{\mathfrak #1}}}
 \@for\i:=\LatinLower\do{%
 	\expandafter\genFkl\i
+}
+
+% Raph Smith’s Formal Script fonts
+\newcommand{\genRSFS}[1]{\expandafter\newcommand\csname s#1\endcsname{{\mathscr #1}}}
+\@for\i:=\LatinUpper\do{%
+	\expandafter\genRSFS\i
 }
 
 % Vectors
@@ -97,19 +94,6 @@
 \newcommand{\vzero}{\vec{0}}
 \newcommand{\vone}{\vec{1}}
 
-%Math Operators
-\DeclareMathOperator{\Fun}{Fun}
-\DeclareMathOperator{\Exp}{exp}
-\DeclareMathOperator{\Image}{im}
-\DeclareMathOperator{\Span}{span}
-\DeclareMathOperator{\Vnp}{VNP}
-\DeclareMathOperator{\Vpclass}{VP}
-\DeclareMathOperator{\Vfclass}{VF}
-\DeclareMathOperator{\Poly}{poly}
-\DeclareMathOperator{\Bin}{Bin}
-\DeclareMathOperator{\Po}{Po}
-\DeclareMathOperator{\Coeff}{coeff}
-
 % Parentheses
 \newcommand{\bc}[1]{\left\{{#1}\right\}}
 \newcommand{\br}[1]{\left({#1}\right)}
@@ -121,15 +105,61 @@
 \newcommand{\bsd}[1]{\left\llbracket{#1}\right\rrbracket}
 \newcommand{\ip}[2]{\left\langle{#1},{#2}\right\rangle}
 \newcommand{\setbuild}[2]{\bc{{#1} \,\lvert\, {#2}}}
+\newcommand{\ideal}[1]{\left\langle{#1} \right\rangle}
+
+% Math Operators with Macro pairs
+\DeclareMathOperator{\Fun}{Fun} % functions
+\newcommand{\fun}[2]{\Fun\br{{#1}, {#2}}}
+\DeclareMathOperator{\Exp}{exp} % exponential
+\newcommand{\nexp}[1]{\Exp\br{{#1}}}
+\DeclareMathOperator{\Span}{span} % span, linear span, lspan
+\newcommand{\lspan}[1]{\Span\br{{#1}}}
+\DeclareMathOperator{\Codim}{codim} % codim, codimension
+\newcommand{\codim}[1]{\Codim\br{{#1}}}
+\DeclareMathOperator{\Poly}{poly} % polytime, poly time
+\newcommand{\poly}[1]{\Poly\br{{#1}}}
+\DeclareMathOperator{\Coeff}{coeff} % coefficient
+\newcommand{\coeff}[1]{\Coeff\br{{#1}}}
+\DeclareMathOperator{\Supp}{Supp} % support
+\newcommand{\supp}[1]{\Supp\br{{#1}}}
+
+\DeclareMathOperator{\Image}{im} % image
+\newcommand{\im}[1]{\Image\br{{#1}}}
+\DeclareMathOperator{\Ker}{ker} % ker
+\renewcommand{\ker}[1]{\Ker\br{{#1}}}
+\DeclareMathOperator{\Coker}{coker} % coker
+\newcommand{\coker}[1]{\Coker\br{{#1}}}
+
+\DeclareMathOperator{\Bin}{Bin} % bionomial
+\DeclareMathOperator{\Po}{Po}
+\DeclareMathOperator{\Char}{char} % Characteristic
+\DeclareMathOperator{\id}{id} % id, identity
+
+\DeclareMathOperator{\Tm}{TM} % Trailing Monomial
+\DeclareMathOperator{\Lm}{LM} % Leading Monomial
+\DeclareMathOperator{\Tt}{TT} % Trailing term
+\DeclareMathOperator{\Lt}{LT} % Leading term
+\newcommand{\tm}[1]{\Tm\br{{#1}}}
+\newcommand{\lm}[1]{\Lm\br{{#1}}}
+\newcommand{\tterm}[1]{\Tt\br{{#1}}}
+\newcommand{\lterm}[1]{\Lt\br{{#1}}}
+
+\DeclareMathOperator{\Trdeg}{trdeg} % Transcendence Degree
+\newcommand{\trdeg}[1]{\Trdeg\br{#1}}
+
+
+% Complexity Classes
+\newcommand{\Vnpclass}{\mathrm{VNP}}
+\newcommand{\Vpclass}{\mathrm{VP}}
+\newcommand{\Vfclass}{\mathrm{VF}}
+\newcommand{\Sppolyclass}{\mathrm{\#P / Poly}}
+\newcommand{\Eclass}{\mathrm{E}}
 
 % Other Macros
-\newcommand{\Z}[1]{\bZ / {#1} \bZ}
-\newcommand{\fun}[2]{\Fun\br{{#1}, {#2}}}
-\newcommand{\diff}{\mathop{}\! \mathrm{d}}
-\newcommand{\nexp}[1]{\Exp\br{{#1}}}
-\newcommand{\wt}[1]{\widetilde{#1}}
-\newcommand{\lspan}[1]{\Span\br{{#1}}}
-\newcommand{\poly}[1]{\Poly\br{{#1}}}
+\newcommand{\Z}[1]{\bZ / {#1} \bZ} % Zn groups
+\newcommand{\diff}{\mathop{}\! \mathrm{d}} %differential
+\newcommand{\wt}[1]{\widetilde{#1}} %widetilde
+\DeclareMathOperator{\Spec}{Spec}
 
 
 % Asymptotic notation
@@ -145,20 +175,5 @@
 \newcommand{\E}[2][]{\underset{#1}\bE\bs{{#2}}}
 % Variance
 \newcommand{\Var}[2][]{\underset{#1}{\text{Var}}\bs{{#2}}}
-
-% Miscellaneous
-\newcommand{\argmin}{\mathop{\arg\min}}
-\newcommand{\argmax}{\mathop{\arg\max}}
-\newcommand{\ind}[1]{\bI\bc{{#1}}}
-\newcommand{\etal}{\emph{et al}\xspace}
-\newcommand{\nth}{\text{$^{\text{th}}$}\xspace}
-\newcommand{\nnd}{\text{$^{\text{nd}}$}\xspace}
-\newcommand{\nrd}{\text{$^{\text{rd}}$}\xspace}
-\newcommand{\nst}{\text{$^{\text{st}}$}\xspace}
-\newcommand{\supp}{\text{supp}}
-\newcommand{\rank}{\text{rank}}
-\newcommand{\trace}{\text{trace}}
-\newcommand{\diag}{\text{diag}}
-\newcommand{\cond}{\,|\,}
 
 \floatstyle{plain}
