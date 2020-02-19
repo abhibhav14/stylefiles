@@ -20,7 +20,7 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{xspace}
-\usepackage[square,authoryear,longnamesfirst]{natbib}
+\usepackage{natbib}
 \usepackage{framed}
 \usepackage{float}
 \usepackage{tikz}
@@ -106,6 +106,7 @@
 \newcommand{\ip}[2]{\left\langle{#1},{#2}\right\rangle}
 \newcommand{\setbuild}[2]{\bc{{#1} \,\lvert\, {#2}}}
 \newcommand{\ideal}[1]{\left\langle{#1} \right\rangle}
+\newcommand{\radideal}[1]{\sqrt{\ideal{#1}}}
 
 % Math Operators with Macro pairs
 \DeclareMathOperator{\Fun}{Fun} % functions
@@ -122,6 +123,9 @@
 \newcommand{\coeff}[1]{\Coeff\br{{#1}}}
 \DeclareMathOperator{\Supp}{Supp} % support
 \newcommand{\supp}[1]{\Supp\br{{#1}}}
+
+\DeclareMathOperator{\Rad}{rad} % radical 2
+\DeclareMathOperator{\Rank}{rank} % rank, linear rank
 
 \DeclareMathOperator{\Image}{im} % image
 \newcommand{\im}[1]{\Image\br{{#1}}}
@@ -146,6 +150,31 @@
 
 \DeclareMathOperator{\Trdeg}{trdeg} % Transcendence Degree
 \newcommand{\trdeg}[1]{\Trdeg\br{#1}}
+
+% Alg geom stuff
+\DeclareMathOperator{\Proj}{Proj} % the construction
+
+\DeclareMathOperator{\Div}{div} % For divisors
+\DeclareMathOperator{\Divclass}{Cl} % For divisor class
+
+\DeclareMathOperator{\Der}{Der} % For derivations
+
+\DeclareMathOperator{\Mor}{Mor} % For morphisms
+\newcommand{\mor}[2]{\Mor\br{{#1}, {#2}}}
+
+\DeclareMathOperator{\Aut}{Aut} % For morphisms
+\newcommand{\aut}[1]{\Aut\br{{#1}}}
+
+\DeclareMathOperator{\Hom}{Hom} % For homomorphisms
+\renewcommand{\hom}[2]{\Hom\br{{#1}, {#2}}}
+
+\newcommand{\tensor}{\otimes}
+\DeclareMathOperator{\coho}{H} % For homologies/cohomologies
+
+\DeclareMathOperator{\res}{res} % Restrictions on (pre)sheafs
+
+\newcommand{\limit}{\varprojlim}
+\newcommand{\colimit}{\varinjlim}
 
 
 % Complexity Classes
