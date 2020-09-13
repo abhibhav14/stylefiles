@@ -16,17 +16,15 @@
 \usepackage{mathtools}
 \usepackage{mathrsfs}
 \usepackage{stmaryrd}
+\usepackage{natbib}
+\usepackage{todonotes}
 \usepackage{algorithmic}
 \usepackage{graphicx}
-\usepackage{hyperref}
 \usepackage{xspace}
-\usepackage{natbib}
-\usepackage{framed}
-\usepackage{float}
 \usepackage{tikz}
 \usepackage{tikz-cd}
-\usepackage{todonotes}
-\usepackage{enumitem}
+\usepackage{framed}
+\usepackage{float}
 
 
 % things to do
@@ -168,6 +166,8 @@
 \DeclareMathOperator{\Hom}{Hom} % For homomorphisms
 \renewcommand{\hom}[2]{\Hom\br{{#1}, {#2}}}
 
+\DeclareMathOperator{\Tor}{Tor} % For the tor functor
+
 \newcommand{\tensor}{\otimes}
 \DeclareMathOperator{\coho}{H} % For homologies/cohomologies
 
@@ -175,6 +175,8 @@
 
 \newcommand{\limit}{\varprojlim}
 \newcommand{\colimit}{\varinjlim}
+
+\DeclareMathOperator{\Ass}{Ass} % Associated primes
 
 
 % Complexity Classes
@@ -205,4 +207,4 @@
 % Variance
 \newcommand{\Var}[2][]{\underset{#1}{\text{Var}}\bs{{#2}}}
 
-\floatstyle{plain}
+%\floatstyle{plain}

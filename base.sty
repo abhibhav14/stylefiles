@@ -13,13 +13,24 @@
 %% the section for subsubsubsections is from https://tex.stackexchange.com/questions/60209/how-to-add-an-extra-level-of-sections-with-headings-below-subsubsection
 %% i am not sure how to get environments working with beamer yet, and thus the style file is split.
 
-%\usepackage{fullpage}
-\usepackage{geometry}
-\usepackage{marginnote}
 \usepackage{titlesec}
+\usepackage{marginnote}
 \usepackage{core}
-%\usepackage[nottoc,numbib]{tocbibind}
+\usepackage{enumitem}
 \usepackage[nottoc]{tocbibind}
+\usepackage{fancyhdr}
+\usepackage{pdfpages}
+
+\usepackage{xcolor}
+%\usepackage{url}
+\usepackage[bookmarksopen=true, pagebackref]{hyperref}
+\hypersetup{
+  colorlinks,
+  linkcolor=[rgb]{0.3,0.3,0.6},
+  citecolor=[rgb]{0.2, 0.6, 0.2},
+  urlcolor=[rgb]{0.6, 0.2, 0.2}
+}
+\usepackage[nameinlink]{cleveref}
 
 %\ifdefined\NOMARGIN
 %\else
@@ -37,6 +48,7 @@
 \else
   \usepackage{palatino}
   \usepackage{eulervm}
+  \renewcommand{\mathbf}{\mathbold}
 \fi
 
 
