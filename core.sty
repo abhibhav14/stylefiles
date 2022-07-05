@@ -25,6 +25,7 @@
 \usepackage{tikz-cd}
 \usepackage{framed}
 \usepackage{float}
+\usepackage{xparse}
 
 
 % things to do
@@ -103,7 +104,7 @@
 \newcommand{\bsd}[1]{\left\llbracket{#1}\right\rrbracket}
 \newcommand{\ip}[2]{\left\langle{#1},{#2}\right\rangle}
 \newcommand{\setbuild}[2]{\bc{{#1} \,\lvert\, {#2}}}
-\newcommand{\ideal}[1]{\left\langle{#1} \right\rangle}
+\newcommand{\ideal}[1]{\br{#1}}
 \newcommand{\radideal}[1]{\sqrt{\ideal{#1}}}
 
 % Math Operators with Macro pairs
@@ -166,6 +167,9 @@
 \DeclareMathOperator{\Hom}{Hom} % For homomorphisms
 \renewcommand{\hom}[2]{\Hom\br{{#1}, {#2}}}
 
+\DeclareMathOperator{\Length}{length} % For homomorphisms
+\newcommand{\length}[1]{\Length\br{{#1}}}
+
 \DeclareMathOperator{\Tor}{Tor} % For the tor functor
 
 \newcommand{\tensor}{\otimes}
@@ -208,3 +212,26 @@
 \newcommand{\Var}[2][]{\underset{#1}{\text{Var}}\bs{{#2}}}
 
 %\floatstyle{plain}
+\DeclareDocumentCommand \Fspan { o } {%
+  \IfNoValueTF {#1} {%
+    \cF_{\textnormal{span}}%
+    }{%
+    \cF_{\textnormal{span}}\br{{#1}}%
+  }%
+}
+
+\DeclareDocumentCommand \Flinear { o } {%
+  \IfNoValueTF {#1} {%
+    \cF_{\textnormal{linear}}%
+    }{%
+    \cF_{\textnormal{linear}}\br{{#1}}%
+  }%
+}
+
+\DeclareDocumentCommand \Fsquare { o } {%
+  \IfNoValueTF {#1} {%
+    \cF_{\textnormal{square}}%
+    }{%
+    \cF_{\textnormal{square}}\br{{#1}}%
+  }%
+}
