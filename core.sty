@@ -105,7 +105,10 @@
 \newcommand{\ip}[2]{\left\langle{#1},{#2}\right\rangle}
 \newcommand{\setbuild}[2]{\bc{{#1} \,\lvert\, {#2}}}
 \newcommand{\ideal}[1]{\br{#1}}
-\newcommand{\radideal}[1]{\sqrt{\ideal{#1}}}
+% \newcommand{\radideal}[1]{\sqrt{\ideal{#1}}}
+
+\DeclareMathOperator{\Rad}{rad}
+\newcommand{\radideal}[1]{\Rad \ideal{#1}}
 
 % Math Operators with Macro pairs
 \DeclareMathOperator{\Fun}{Fun} % functions
@@ -123,7 +126,6 @@
 \DeclareMathOperator{\Supp}{Supp} % support
 \newcommand{\supp}[1]{\Supp\br{{#1}}}
 
-\DeclareMathOperator{\Rad}{rad} % radical 2
 \DeclareMathOperator{\Rank}{rank} % rank, linear rank
 
 \DeclareMathOperator{\Image}{im} % image
